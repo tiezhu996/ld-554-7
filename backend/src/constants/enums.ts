@@ -31,8 +31,22 @@ export const UserRole = {
   EMPLOYEE: 'EMPLOYEE'
 } as const;
 
+export const TransferType = {
+  PROBATION_END: 'PROBATION_END',
+  TRANSFER: 'TRANSFER',
+  RESIGNATION: 'RESIGNATION'
+} as const;
+
+export const TransferStatus = {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED'
+} as const;
+
 export type EmployeeStatusValue = (typeof EmployeeStatus)[keyof typeof EmployeeStatus];
 export type ShiftTypeValue = (typeof ShiftType)[keyof typeof ShiftType];
 export type TransactionTypeValue = (typeof TransactionType)[keyof typeof TransactionType];
 export type TransactionCategoryValue = (typeof TransactionCategory)[keyof typeof TransactionCategory];
 export type UserRoleValue = (typeof UserRole)[keyof typeof UserRole];
+export type TransferTypeValue = (typeof TransferType)[keyof typeof TransferType];
+export type TransferStatusValue = (typeof TransferStatus)[keyof typeof TransferStatus];

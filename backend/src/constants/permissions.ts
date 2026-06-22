@@ -7,6 +7,12 @@ export const permissions = {
     update: [UserRole.OWNER, UserRole.MANAGER],
     delete: [UserRole.OWNER]
   },
+  employeeTransfers: {
+    read: [UserRole.OWNER, UserRole.MANAGER, UserRole.EMPLOYEE],
+    create: [UserRole.OWNER, UserRole.MANAGER],
+    approve: [UserRole.OWNER, UserRole.MANAGER],
+    reject: [UserRole.OWNER, UserRole.MANAGER]
+  },
   shifts: {
     read: [UserRole.OWNER, UserRole.MANAGER, UserRole.EMPLOYEE],
     create: [UserRole.OWNER, UserRole.MANAGER],

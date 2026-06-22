@@ -96,3 +96,27 @@ CREATE TABLE IF NOT EXISTS audit_logs (
   timestamp DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT fk_audit_operator FOREIGN KEY (operator_id) REFERENCES users(id) ON DELETE SET NULL
 );
+
+CREATE TABLE IF NOT EXISTS employee_transfers (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  employee_id INT NOT NULL,
+  type ENUM('PROBATION_END','TRANSFER','RESIGNATION') NOT NULL,
+  status ENUM('PENDING','APPROVED','REJECTED') NOT NULL DEFAULT 'PENDING',
+  reason TEXT NOT NULL,
+  effective_date DATE NOT NULL,
+  old_department VARCHAR(60) NULL,
+  new_department VARCHAR(60) NULL,
+  old_position VARCHAR(60) NULL,
+  new_position VARCHAR(60) NULL,
+  old_salary DECIMAL(12,2) NULL,
+  new_salary DECIMAL(12,2) NULL,
+  applicant_id INT NOT NULL,
+  approver_id INT NULL,
+  approve_remark TEXT NULL,
+  approved_at DATETIME NULL,
+  created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  CONSTRAINT fk_transfer_employee FOREIGN KEY (employee_id) REFERENCES employees(id) ON DELETE CASCADE,
+  CONSTRAINT fk_transfer_applicant FOREIGN KEY (applicant_id) REFERENCES users(id) ON DELETE CASCADE,
+  CONSTRAINT fk_transfer_approver FOREIGN KEY (approver_id) REFERENCES users(id) ON DELETE SET NULL
+);
